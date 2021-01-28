@@ -34,7 +34,13 @@ const Color washGreenColor = Color.fromRGBO(200,230,201,1);
 const Color darkGreenColor = Color.fromRGBO(46,125,50,1);
 
 
-const TextStyle baseTextStyle = TextStyle(
+const TextStyle defaultTextStyle = TextStyle(
+  fontFamily: 'Roboto',
+  fontSize: 14,
+  color: defaultTextColor
+);
+
+const TextStyle reverseTextStyle = TextStyle(
   fontFamily: 'Roboto',
   fontSize: 14,
   color: reverseTextColor
@@ -61,10 +67,10 @@ const TextStyle linkTextStyle = TextStyle(
 );
 
 // Pixel height for a SizedBox among items in a Column widget
-const SizedBox smallSpace = SizedBox(height: 8.0);
-const SizedBox mediumSpace = SizedBox(height: 16.0);
-const SizedBox largepace = SizedBox(height: 24.0);
-const SizedBox xlargeSpace = SizedBox(height: 32.0);
+const SizedBox smallSpace = SizedBox(height: 8.0, width: 8.0);
+const SizedBox mediumSpace = SizedBox(height: 16.0, width: 16.0);
+const SizedBox largeSpace = SizedBox(height: 24.0, width: 24.0);
+const SizedBox xlargeSpace = SizedBox(height: 32.0, width: 32.0);
 
 
 
