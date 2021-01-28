@@ -1,16 +1,13 @@
-# ncovi_clone
+# Ncovi clone
 
-A new Flutter application.
+## Mô tả
 
-## Getting Started
+NCOVI clone là dự án xây dựng ứng dụng di động với FLutter dựa trên ứng dụng [NCOVI](https://play.google.com/store/apps/details?id=com.vnptit.innovation.ncovi)
 
-This project is a starting point for a Flutter application.
+## Cập nhật công việc đã thực hiện
 
-A few resources to get you started if this is your first Flutter project:
+- [x] Khởi tạo ứng dụng.
+- [x] Xây dựng giao diện với Figma. Link file thiết kế: [NCOVI clone UI design](https://www.figma.com/file/SttxQFdGUiPALqAbik2EEb/NCOVI-clone)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
