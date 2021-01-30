@@ -7,7 +7,8 @@ NCOVI clone là dự án xây dựng ứng dụng di động với FLutter dựa
 ## Cập nhật công việc đã thực hiện
 
 - [x] Khởi tạo ứng dụng.
-- [x] Xây dựng giao diện với Figma. Link file thiết kế: [NCOVI clone UI design](https://www.figma.com/file/SttxQFdGUiPALqAbik2EEb/NCOVI-clone)
+- [x] Xây dựng giao diện với Figma. File thiết kế: [NCOVI clone UI design](https://www.figma.com/file/SttxQFdGUiPALqAbik2EEb/NCOVI-clone).
+- [ ] Code lại giao diện theo thiết kế, làm quen với các thành phần của Flutter.
 
 
 
