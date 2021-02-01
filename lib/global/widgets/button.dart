@@ -4,10 +4,12 @@ import 'package:ncovi_clone/global/style.dart';
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     Key key,
-    this.label
+    this.label,
+    this.onPressed
   }) : super(key: key);
 
   final String label;
+  final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class PrimaryButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
         ),
         child: FlatButton(
-            onPressed: () {},
+            onPressed: onPressed,
             child: Text(label, style: reverseTextStyle)));
   }
 }
