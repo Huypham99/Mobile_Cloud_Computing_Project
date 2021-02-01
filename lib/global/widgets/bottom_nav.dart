@@ -20,8 +20,8 @@ class BottomNav extends StatelessWidget {
             children: [
               IconLabel(label: "Trang chủ"),
               IconLabel(label: "Sức khỏe"),
-              IconLabel(label: "Phản ánh"),
-              IconLabel(label: "Danh mục")
+              // IconLabel(label: "Phản ánh"),
+              // IconLabel(label: "Danh mục")
             ],
           ),
         ));
