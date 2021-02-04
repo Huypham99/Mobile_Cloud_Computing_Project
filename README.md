@@ -11,7 +11,7 @@ NCOVI clone là dự án xây dựng ứng dụng di động với FLutter dựa
 - [x] Tương tác với Checkbox.
 
 ## Chức năng sẽ thực hiện
-- [] Cài đặt logic giữa các widget. Ví dụ: Chỉ hiện thị dialog thông báo khi checkbox đã được chọn.
+- [ ] Cài đặt logic giữa các widget. Ví dụ: Chỉ hiện thị dialog thông báo khi checkbox đã được chọn.
 
 ## Cập nhật công việc
 
