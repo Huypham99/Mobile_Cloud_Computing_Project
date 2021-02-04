@@ -12,5 +12,9 @@ NCOVI clone là dự án xây dựng ứng dụng di động với FLutter dựa
 - [x] Tìm hiểu phương pháp điều hướng (navigation/routing) cơ bản. Mã nguồn phần điều hướng được tham khảo tại [Github của tác giả ResoDev](https://github.com/ResoCoder/finished-flutter-firebase-ddd-course/blob/master/lib/presentation/routes/router.gr.dart). 
 - [ ] Học cách quản lý State của ứng dụng. Áp dụng được vào dự án. 
 
+## Giao diện đã thực hiện
 
+![alt text](https://github.com/Huypham99/Mobile_Cloud_Computing_Project/blob/main/assets/images/HomeScreen.png "HomeScreen")
+![alt text](https://github.com/Huypham99/Mobile_Cloud_Computing_Project/blob/main/assets/images/HealthScreen.png "HealthScreen")
+![alt text](https://github.com/Huypham99/Mobile_Cloud_Computing_Project/blob/main/assets/images/Modal.png "ModalScreen")
 
