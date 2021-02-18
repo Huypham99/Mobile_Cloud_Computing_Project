@@ -1,8 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ncovi_clone/bloc/healthCheck/healthcheck_bloc.dart';
 import 'package:ncovi_clone/global/style.dart';
 import 'package:ncovi_clone/global/widgets/button.dart';
+import 'package:ncovi_clone/screens/health/components/healthInforCard.dart';
+import 'package:ncovi_clone/screens/health/components/healthReportCheck.dart';
+import 'package:ncovi_clone/screens/health/components/modal.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  Map<String, bool> values = {
+    'Sốt': false,
+    'Ho': false,
+    'Khó thở': false,
+    'Mệt mỏi': false,
+    'Khỏe mạnh': false
+  };
+
+  var checkedListItem = [];
+
+  bool disabled;
+
+  void checkboxStateChange(key) {
+    values[key] = !values[key];
+
+    if (values[key] == true) {
+      if (key == "Khỏe mạnh") {
+        checkedListItem.clear();
+        checkedListItem.add(key);
+        values.forEach((key, value) {
+          if (key != "Khỏe mạnh") values[key] = false;
+        });
+      } else
+        checkedListItem.add(key);
+    } else
+      checkedListItem.remove(key);
+
+    checkedListItem.isNotEmpty
+        ? healthChecked(context)
+        : healthUnchecked(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,21 +60,67 @@ class Body extends StatelessWidget {
             ),
             smallSpace,
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              HealthReportCheck(label: "Sốt"),
-              HealthReportCheck(label: "Ho")
+              HealthReportCheck(
+                  label: "Sốt",
+                  value: values["Sốt"],
+                  checkedListItem: checkedListItem,
+                  onChanged: () {
+                    setState(() {
+                      checkboxStateChange("Sốt");
+                    });
+                  }),
+              HealthReportCheck(
+                  label: "Ho",
+                  value: values["Ho"],
+                  checkedListItem: checkedListItem,
+                  onChanged: () {
+                    setState(() {
+                      checkboxStateChange("Ho");
+                    });
+                  })
             ]),
             smallSpace,
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              HealthReportCheck(label: "Khó thở"),
-              HealthReportCheck(label: "Mệt mỏi")
+              HealthReportCheck(
+                  label: "Khó thở",
+                  value: values["Khó thở"],
+                  checkedListItem: checkedListItem,
+                  onChanged: () {
+                    setState(() {
+                      checkboxStateChange("Khó thở");
+                    });
+                  }),
+              HealthReportCheck(
+                  label: "Mệt mỏi",
+                  value: values["Mệt mỏi"],
+                  checkedListItem: checkedListItem,
+                  onChanged: () {
+                    setState(() {
+                      checkboxStateChange("Mệt mỏi");
+                    });
+                  })
             ]),
             smallSpace,
-            HealthReportCheck(label: "Khỏe mạnh"),
+            HealthReportCheck(
+                label: "Khỏe mạnh",
+                value: values["Khỏe mạnh"],
+                checkedListItem: checkedListItem,
+                onChanged: () {
+                  setState(() {
+                    checkboxStateChange("Khỏe mạnh");
+                  });
+                }),
             largeSpace,
-            PrimaryButton(
-              label: "GỬI THÔNG TIN",
+            BlocBuilder<HealthcheckBloc, HealthcheckState>(
+              builder: (context, state) {
+                if (state is HealthcheckInitial) {
+                  return buildButton(state.initial, context);
+                } else if (state is CheckState) {
+                  return buildButton(state.check, context);
+                }
+              },
             ),
-          largeSpace,
+            largeSpace,
             Align(
               alignment: Alignment.centerLeft,
               child: Container(
@@ -41,99 +129,40 @@ class Body extends StatelessWidget {
                       style: titleLargeStyle)),
             ),
             smallSpace,
-            HealthInfor(),
-            HealthInfor()
+            HealthInforCard(
+                date: "20/1/2021",
+                time: "10:30",
+                status: "An toàn",
+                content: "Bình thường"),
           ],
         ),
       ),
     );
   }
-}
 
-class HealthInfor extends StatelessWidget {
-  const HealthInfor({
-    Key key,
-  }) : super(key: key);
+  void healthChecked(BuildContext context) {
+    final _healthcheckBloc = context.read<HealthcheckBloc>();
+    _healthcheckBloc.add(Healthchecked());
+  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Date", style: defaultTextStyle),
-          mediumSpace,
-          Container(
-            decoration: BoxDecoration(
-                color: defaultBackgroundColor,
-                borderRadius: BorderRadius.circular(4),
-                boxShadow: [lightShadow]),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 12.0, vertical: 10.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: Container(
-                            decoration: BoxDecoration(
-                                color: primaryGreenColor,
-                                borderRadius: BorderRadius.circular(50)),
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Text("An toàn",
-                                  style: reverseTextStyle),
-                            )),
-                      ),
-                      Text("Time", style: defaultTextStyle)
-                    ],
-                  ),
-                  mediumSpace,
-                  Text("Thông tin sức khỏe", style: titleMediumStyle)
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
+  void healthUnchecked(BuildContext context) {
+    final _healthcheckBloc = context.read<HealthcheckBloc>();
+    _healthcheckBloc.add(Healthuncheck());
   }
 }
 
-class HealthReportCheck extends StatelessWidget {
-  const HealthReportCheck({Key key, this.label}) : super(key: key);
-
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Container(
-          height: 40.0,
-          width: 180.0,
-          decoration: BoxDecoration(
-              color: defaultBackgroundColor,
-              borderRadius: BorderRadius.circular(4),
-              boxShadow: [lightShadow]),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-              Container(
-                  height: 16.0,
-                  width: 16.0,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      border:
-                          Border.all(color: defaultPrimaryColor, width: 1))),
-              smallSpace,
-              Text(label, style: defaultTextStyle)
-            ]),
-          )),
-    );
-  }
+Widget buildButton(state, context) {
+  return PrimaryButton(
+      label: "GỬI THÔNG TIN",
+      disabled: !state,
+      onPressed: () => {
+            if (state == true)
+              {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) => Modal(
+                        content: "Bạn đã gửi thông tin thành công !",
+                        imageName: "Checked.png"))
+              }
+          });
 }
