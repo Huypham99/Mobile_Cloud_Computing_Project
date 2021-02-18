@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 const Color defaultBackgroundColor = Color.fromRGBO(255, 255, 255, 1);
 const Color reverseBackgroundColor = Color.fromRGBO(22, 23, 26, 1);
 const Color washBackgroundColor = Color.fromRGBO(250, 250, 250, 1);
-const Color divider = Color.fromRGBO(246, 247, 248, 1);
-const Color border = Color.fromRGBO(235, 236, 237, 1);
+const Color dividerColor = Color.fromRGBO(246, 247, 248, 1);
+const Color borderColor = Color.fromRGBO(235, 236, 237, 1);
 
 const Color defaultPrimaryColor = Color.fromRGBO(68, 0, 204, 1);
 const Color washPrimaryColor = Color.fromRGBO(232, 229, 255, 1);
@@ -36,8 +36,14 @@ const Color darkGreenColor = Color.fromRGBO(46, 125, 50, 1);
 const TextStyle defaultTextStyle =
     TextStyle(fontFamily: 'Roboto', fontSize: 14, color: defaultTextColor);
 
+const TextStyle labelTextStyle =
+    TextStyle(fontFamily: 'Roboto', fontSize: 14, color: placeholderTextColor, fontWeight: FontWeight.w500);
+
 const TextStyle reverseTextStyle =
     TextStyle(fontFamily: 'Roboto', fontSize: 14, color: reverseTextColor);
+
+const TextStyle selectedLabelTextStyle =
+    TextStyle(fontFamily: 'Roboto', fontSize: 14, color: defaultPrimaryColor, fontWeight: FontWeight.w500);
 
 const TextStyle titleLargeStyle = TextStyle(
     fontFamily: 'Roboto',

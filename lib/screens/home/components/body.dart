@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ncovi_clone/global/style.dart';
+import 'package:ncovi_clone/global/widgets/button.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -24,14 +25,12 @@ class Body extends StatelessWidget {
                     child: Row(
                       children: [
                         Tab(
-                          title: "Viet Nam",
+                          title: "Việt Nam",
                         ),
-                        smallSpace,
-                        Tab(title: "The gioi")
                       ],
                     ),
                   ),
-                  Icon(Icons.refresh_rounded, color: Colors.purple[700])
+                  Icon(Icons.refresh_rounded, color: defaultPrimaryColor)
                 ],
               ),
             ),
@@ -57,15 +56,16 @@ class Body extends StatelessWidget {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      StatisticCard(quantity: "200.000", cardType: "Tử vong"),
-                      StatisticCard(quantity: "2.100.000", cardType: "Nghiêm trọng")
+                      StatisticCard(quantity: "35", cardType: "Tử vong"),
+                      StatisticCard(
+                          quantity: "2", cardType: "Nghiêm trọng")
                     ]),
                 mediumSpace,
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      StatisticCard(quantity: "30.000", cardType: "Nhiễm bệnh"),
-                      StatisticCard(quantity: "100.000", cardType: "Hồi phục")
+                      StatisticCard(quantity: "1.911", cardType: "Nhiễm bệnh"),
+                      StatisticCard(quantity: "1.461", cardType: "Hồi phục")
                     ])
               ],
             )),
@@ -76,9 +76,9 @@ class Body extends StatelessWidget {
                     child: Text("Cập nhật: 9:30, 20/12",
                         style: defaultTextStyle))),
             largeSpace,
-            PrimaryButton(),
+            PrimaryButton(label: "KHAI BÁO Y TẾ TỰ NGUYỆN", disabled: false),
             mediumSpace,
-            PrimaryButton()
+            PrimaryButton(label: "TRA CỨU THÔNG TIN", disabled: false)
           ],
         ),
       ),
@@ -86,26 +86,7 @@ class Body extends StatelessWidget {
   }
 }
 
-class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        height: 64.0,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: defaultPrimaryColor,
-          borderRadius: BorderRadius.circular(4),
-        ),
-        child: FlatButton(
-            onPressed: () {},
-            child: Text("KHAI BAO Y TE TU NGUYEN", style: reverseTextStyle)));
-  }
-}
-
+// ignore: missing_return
 Color switchColor(String cardType) {
   switch (cardType) {
     case "Tử vong":
@@ -147,14 +128,7 @@ class StatisticCard extends StatelessWidget {
         decoration: BoxDecoration(
             color: defaultBackgroundColor,
             borderRadius: BorderRadius.circular(4),
-            boxShadow: [
-              BoxShadow(
-                color: washPrimaryColor.withOpacity(0.25),
-                spreadRadius: 10,
-                blurRadius: 2.5,
-                offset: Offset(0, 0),
-              ),
-            ]),
+            boxShadow: [lightShadow]),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:ncovi_clone/global/style.dart';
 
 class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({
-    Key key,
-    this.label,
-    this.onPressed
-  }) : super(key: key);
+  const PrimaryButton({Key key, this.label, this.onPressed, this.disabled})
+      : super(key: key);
 
   final String label;
   final Function onPressed;
+  final bool disabled;
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +15,13 @@ class PrimaryButton extends StatelessWidget {
         height: 64.0,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: defaultPrimaryColor,
+          color: disabled == false ? defaultPrimaryColor : borderColor,
           borderRadius: BorderRadius.circular(4),
         ),
         child: FlatButton(
-            onPressed: onPressed,
-            child: Text(label, style: reverseTextStyle)));
+            onPressed: disabled == false ? onPressed : null,
+            child: Text(label,
+                style:
+                    disabled == false ? reverseTextStyle : labelTextStyle)));
   }
 }
